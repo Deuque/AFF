@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg3"/>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient1"/>
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/mscroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mytransparent">
+
+
+
+    <RelativeLayout
+        android:id="@+id/sappbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/logo1"
+            android:layout_alignParentStart="true"/>
+
+        <ImageView
+            android:id="@+id/od"
+            android:layout_width="28dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/menu"
+            android:layout_alignParentEnd="true"
+            android:tint="@color/aux1"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sappbar"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/poppins"
+        android:text="A.F.F ENTERTAINMENT WORLD INT'L"
+        android:textColor="@color/aux1"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@id/title"
+        android:background="@drawable/bgshape1"
+        android:backgroundTint="@color/mytransparent"
+        android:padding="12dp"
+        android:hint="Search Music, Videos or Ebooks"
+        android:textColorHint="@color/aux2"
+        android:textColor="@color/aux1"
+        android:drawableStart="@drawable/search"
+        android:drawableTint="@color/aux2"
+        android:drawablePadding="10dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/roboto"/>
+
+    <RelativeLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bgshape3"
+        android:layout_below="@id/search"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp">
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="right"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="10dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="1dp"
+            app:sliderIndicatorSelectedColor="@color/aux3"
+            app:sliderIndicatorUnselectedColor="@color/aux2"
+            app:sliderScrollTimeInSec="4"
+            app:sliderStartAutoCycle="true" />
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/slider">
+
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="7dp"
+        android:fontFamily="@font/poppins"
+        android:text="About A.F.F"
+        android:textColor="@color/aux3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <include
+        android:id="@+id/rlayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/mission_and_vision"
+        android:layout_below="@id/about"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
+    <include
+        android:id="@+id/clayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/career_pursuit"
+        android:layout_below="@id/rlayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/excos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="7dp"
+        android:fontFamily="@font/poppins"
+        android:text="Excos"
+        android:textColor="@color/aux3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/excos"
+        android:layout_below="@id/excos"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
+
+        </RelativeLayout>
+<!--        />-->
+
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

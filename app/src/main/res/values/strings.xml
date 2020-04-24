@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">AFF</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+    <string name="msdefinition">AFF Simply means Atmosphere For Favour. The primary aim is Lifting people from zero to hero via their gifts. Our vision includes:
+    </string>
+    <string name="vision1">1. To Build gifted people’s empire where everyone can become a mega super star through his/her God’s giving gifts  </string>
+    <string name="vision2">2. To enable people and ensure that people’s God’s giving gifts is blessing them and the world around them megally </string>
+    <string name="cp1">1. You must make your career to be you (You must be possessed by the thing you do)</string>
+    <string name="cp2">2. What you’re doing is an intangible business</string>
+    <string name="cp3">3. Aff is a Gifted people’s Empire </string>
+    <string name="cp4">4. Aff is a Global Entertainment world that makes you a blessing around the world because your gift is your life</string>
+    <string name="cp5">5. Aff is a helping house where anyone who comes in is helped </string>
+    <string name="cp6">6. Aff is a place of success and not a place of stress </string>
+    <string name="cp7">7. Aff is a world where your God’s giving gift must shine out to your world</string>
+    <string name="cp8">8. Aff makes your life what it oughts to be</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

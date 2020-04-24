@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#37474F</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#DD8E0B</color>
+
+    <color name="aux1">#ffffff</color>
+    <color name="aux2">#F5F5F5</color>
+    <color name="aux3">#AA6F20</color>
+    <color name="aux4">#000000</color>
+    <color name="aux5">#9E9E9E</color>
+    <color name="aux6">#101010</color>
+    <color name="aux7">#282828</color>
+    <color name="mytransparent">#99000000</color>
+</resources>

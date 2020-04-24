@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/aux6"
+    android:gravity="end"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/cd"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:contentDescription="@string/nav_header_desc"
+        android:src="@mipmap/close"
+        android:tint="@color/aux1"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"/>
+
+    <RelativeLayout
+        android:id="@+id/reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="FM@gmail.com"
+            android:textColor="@color/aux1"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="AFF Interested user"
+            android:textColor="@color/aux1"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_below="@id/email"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:onClick="logout"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="Logout"
+            android:textColor="@color/aux3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="@drawable/bgshape4"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/non_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/rtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Have your interest or membership code?"
+            android:textColor="@color/aux1"
+            android:textSize="15sp"
+            android:layout_alignParentStart="true"/>
+
+        <Button
+            android:id="@+id/signin"
+            android:onClick="gotoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_below="@id/rtitle"
+            android:layout_centerVertical="true"
+            android:text="Sign in"
+            android:textColor="@color/aux3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bgshape4"/>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@mipmap/home"
+            android:title="@string/menu_home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_members"
+            android:icon="@mipmap/members"
+            android:title="Members" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@mipmap/news"
+            android:title="News" />
+        <item
+            android:id="@+id/nav_media"
+            android:icon="@mipmap/music2"
+            android:title="Media" />
+        <item
+            android:id="@+id/nav_excos"
+            android:icon="@mipmap/exco"
+            android:title="Excos" />
+<!--        <item-->
+<!--            android:id="@+id/nav_video"-->
+<!--            android:icon="@mipmap/video"-->
+<!--            android:title="Videos" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_article"-->
+<!--            android:icon="@mipmap/news"-->
+<!--            android:title="News" />-->
+    </group>
+
+<!--    <item android:title="">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/nav_about"-->
+<!--                android:icon="@mipmap/about"-->
+<!--                android:title="About" />-->
+<!--        </menu>-->
+<!--    </item>-->
+
+</menu>

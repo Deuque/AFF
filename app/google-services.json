@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "84012781381",
+    "firebase_url": "https://aff-world.firebaseio.com",
+    "project_id": "aff-world",
+    "storage_bucket": "aff-world.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84012781381:android:d0cb92a0669301228cb82c",
+        "android_client_info": {
+          "package_name": "com.dcinspirations.aff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84012781381-v3oghlkpr7kuonhq3s0d58dp8kki8u5a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dcinspirations.aff",
+            "certificate_hash": "57754a7efa448a71110108e384248031cc6102a1"
+          }
+        },
+        {
+          "client_id": "84012781381-hr67q3h49j4hj61176un1g2upt5p7pcg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARQnIW37B0uiNkYmO7EOaUtRL6hsuyLl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84012781381-hr67q3h49j4hj61176un1g2upt5p7pcg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
