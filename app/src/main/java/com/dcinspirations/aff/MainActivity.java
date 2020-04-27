@@ -31,6 +31,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import co.paystack.android.PaystackSdk;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ctx = getApplicationContext();
+        PaystackSdk.initialize(getApplicationContext());
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_download, R.id.nav_music,
+                R.id.nav_home,
                 R.id.nav_video, R.id.nav_article, R.id.nav_about, R.id.nav_members,
                 R.id.nav_news,R.id.nav_media)
                 .setDrawerLayout(drawer)

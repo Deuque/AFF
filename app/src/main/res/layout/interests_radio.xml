@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/interest_group"
+    android:paddingTop="10dp">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Song Writer"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comedian"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dancer"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Script Writer"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Musician"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actor/Actress"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hand work"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instrumentalist"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/rb9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modelling"
+            android:buttonTint="@drawable/radio_selector"
+            android:textColor="@color/aux5"
+            android:fontFamily="@font/roboto"/>
+
+
+</RadioGroup>

@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
         final SliderView sliderView = root.findViewById(R.id.imageSlider);
 
-        SliderAdapter adapter = new SliderAdapter(getContext(), sliderlist);
+        SliderAdapter adapter = new SliderAdapter(getContext(), sliderlist,0);
 
         sliderView.setSliderAdapter(adapter);
 

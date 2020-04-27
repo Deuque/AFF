@@ -39,11 +39,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.viewHolder> {
     SharedPreferences.Editor spe;
     private NewsFragment f;
 
-    public NewsAdapter(Context context, List<NewsModel> objectlist, NewsFragment fragment) {
+    public NewsAdapter(Context context, List<NewsModel> objectlist) {
         inflater = LayoutInflater.from(context);
         this.objectlist = objectlist;
         this.context = context;
-        this.f = fragment;
     }
 
 

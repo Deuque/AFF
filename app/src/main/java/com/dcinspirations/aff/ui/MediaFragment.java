@@ -1,6 +1,7 @@
 package com.dcinspirations.aff.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,7 +29,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dcinspirations.aff.MainActivity;
 import com.dcinspirations.aff.R;
+import com.dcinspirations.aff.Sp;
 import com.dcinspirations.aff.adapters.MediaAdapter;
+import com.dcinspirations.aff.adapters.SliderAdapter;
 import com.dcinspirations.aff.models.MediaModel;
 import com.github.siyamed.shapeimageview.mask.PorterShapeImageView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +49,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -68,27 +73,43 @@ public class MediaFragment extends Fragment {
     Uri fileuri;
     String details;
     String type;
-    FloatingActionButton fab;
-    ImageView cd;
-    RelativeLayout mediaupload;
+    FloatingActionButton fab,fab2;
+    ImageView cd,cd2;
+    RelativeLayout mediaupload,mm,slider;
     LinearLayout upload;
     EditText aname, sname;
-    TextView file;
+    TextView file,empty;
     PorterShapeImageView file2;
     Button cancel;
-    GifImageView ldgif;
+    GifImageView ldgif,ldgif2;
     MediaAdapter mediaAdapter;
     ArrayList<MediaModel> medialist;
     LinearLayout load;
     String selecttab="audio";
+    SliderView sliderView;
+    SliderAdapter adapter;
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_media, container, false);
 
+        mm = view.findViewById(R.id.mediamain);
+        slider = view.findViewById(R.id.slider);
+        sliderView = view.findViewById(R.id.imageSlider);
         fab = view.findViewById(R.id.fab);
+        if(new Sp(view.getContext()).getLoginType()!=3){
+            fab.setVisibility(View.GONE);
+        }
+//        fab2 = view.findViewById(R.id.fab2);
+//        fab2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadImageSlide(0);
+//            }
+//        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +121,13 @@ public class MediaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).onBackPressed();
+            }
+        });
+        cd2 = view.findViewById(R.id.cd2);
+        cd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeImageSlide();
             }
         });
 
@@ -128,6 +156,8 @@ public class MediaFragment extends Fragment {
 
         medialist = new ArrayList<>();
         load = view.findViewById(R.id.load);
+        ldgif2 = view.findViewById(R.id.lgif2);
+        empty = view.findViewById(R.id.empty);
 
         ctx = view.getContext();
         return view;
@@ -138,11 +168,29 @@ public class MediaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView rv = view.findViewById(R.id.rv);
         GridLayoutManager glm = new GridLayoutManager(getContext(), 3);
-        mediaAdapter = new MediaAdapter(getContext(), medialist, MediaFragment.this);
+        mediaAdapter = new MediaAdapter(getContext(), medialist,MediaFragment.this);
         rv.setAdapter(mediaAdapter);
         rv.setLayoutManager(glm);
         setupTablayout(view);
         populatePosts();
+
+    }
+
+    public void loadImageSlide(int index){
+        mm.setVisibility(View.GONE);
+        slider.setVisibility(View.VISIBLE);
+
+        adapter = new SliderAdapter(getContext(), medialist,1);
+        sliderView.setSliderAdapter(adapter);
+        adapter.notifyDataSetChanged();
+//        sliderView.setIndicatorAnimation(IndicatorAnimations.FILL); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setCurrentPagePosition(index);
+
+    }
+    public void removeImageSlide(){
+        mm.setVisibility(View.VISIBLE);
+        slider.setVisibility(View.GONE);
     }
 
     private void populatePosts() {
@@ -161,7 +209,12 @@ public class MediaFragment extends Fragment {
                     }
                 }
                 mediaAdapter.notifyDataSetChanged();
-                load.setVisibility(View.GONE);
+                if(medialist.isEmpty()){
+                    ldgif2.setVisibility(View.GONE);
+                    empty.setText("No news here");
+                }else {
+                    load.setVisibility(View.GONE);
+                }
 
             }
 
@@ -174,6 +227,8 @@ public class MediaFragment extends Fragment {
 
     }
 
+
+
     public void setupTablayout(View v) {
         tabs = v.findViewById(R.id.tabs);
         TabLayout.Tab tab1 = tabs.newTab();
@@ -181,13 +236,15 @@ public class MediaFragment extends Fragment {
         TabLayout.Tab tab2 = tabs.newTab();
         tab2.setText("Gallery");
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
                     selecttab= "audio";
+//                    fab2.setVisibility(View.GONE);
                 } else {
                     selecttab= "image";
-
+//                    fab2.setVisibility(View.VISIBLE);
                 }
                 populatePosts();
             }
@@ -196,12 +253,15 @@ public class MediaFragment extends Fragment {
             public void onTabUnselected(TabLayout.Tab tab) {
             }
 
+            @SuppressLint("RestrictedApi")
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
                     selecttab= "audio";
+//                    fab2.setVisibility(View.GONE);
                 } else {
                     selecttab= "image";
+//                    fab2.setVisibility(View.VISIBLE);
                 }
                 populatePosts();
             }

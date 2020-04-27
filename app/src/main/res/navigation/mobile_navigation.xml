@@ -11,17 +11,7 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_download"
-        android:name="com.dcinspirations.aff.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
 
-    <fragment
-        android:id="@+id/nav_music"
-        android:name="com.dcinspirations.aff.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 
     <fragment
         android:id="@+id/nav_video"
@@ -60,4 +50,9 @@
         android:name="com.dcinspirations.aff.ui.ExcosFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_excos" />
+    <fragment
+        android:id="@+id/nav_interestforms"
+        android:name="com.dcinspirations.aff.ui.InterestFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_interest" />
 </navigation>

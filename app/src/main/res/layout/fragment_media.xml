@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/mytransparent">
 
-    <!--       <pl.droidsonroids.gif.GifImageView-->
-    <!--           android:layout_width="match_parent"-->
-    <!--           android:layout_height="match_parent"-->
-    <!--           android:scaleType="fitXY"-->
-    <!--           android:src="@mipmap/bg3"/>-->
+           <pl.droidsonroids.gif.GifImageView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:scaleType="fitXY"
+               android:src="@mipmap/bg3"/>
 
     <View
         android:layout_width="match_parent"
@@ -21,6 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient1" />
+
+    <RelativeLayout
+        android:id="@+id/mediamain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -96,9 +102,11 @@
         android:gravity="center"
         android:orientation="vertical"
         android:layout_below="@id/rv"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:layout_centerInParent="true">
 
         <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/lgif2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ld7" />
@@ -109,7 +117,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Loading Media"
-            android:textColor="@color/aux7"
+            android:textColor="@color/aux5"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -120,14 +128,22 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/fab_margin">
 
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:src="@drawable/slide"-->
+<!--            app:fabSize="mini" />-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
+            android:layout_marginTop="10dp"
             android:src="@drawable/add"
             app:fabSize="mini" />
+
     </RelativeLayout>
 
 
@@ -258,4 +274,10 @@
 
         </LinearLayout>
     </RelativeLayout>
+    </RelativeLayout>
+    <include
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/slideshow"/>
+
 </RelativeLayout>

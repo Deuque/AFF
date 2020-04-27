@@ -13,24 +13,16 @@
             android:id="@+id/nav_forms"
             android:icon="@mipmap/form"
             android:title="Membership Form" />
-        <item
-            android:id="@+id/nav_download"
-            android:icon="@mipmap/download"
-            android:title="Downloads" />
 
 
         <item
-            android:id="@+id/nav_music"
-            android:icon="@mipmap/music2"
-            android:title="Music" />
-<!--        <item-->
-<!--            android:id="@+id/nav_video"-->
-<!--            android:icon="@mipmap/video"-->
-<!--            android:title="Videos" />-->
-        <item
-            android:id="@+id/nav_article"
+            android:id="@+id/nav_news"
             android:icon="@mipmap/news"
             android:title="News" />
+        <item
+            android:id="@+id/nav_media"
+            android:icon="@mipmap/music2"
+            android:title="Media" />
     </group>
 
 <!--    <item android:title="">-->

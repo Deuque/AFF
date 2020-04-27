@@ -1,5 +1,6 @@
 package com.dcinspirations.aff.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.dcinspirations.aff.MainActivity;
 import com.dcinspirations.aff.R;
+import com.dcinspirations.aff.Sp;
 import com.dcinspirations.aff.adapters.MediaAdapter;
 import com.dcinspirations.aff.adapters.NewsAdapter;
 import com.dcinspirations.aff.models.MediaModel;
@@ -60,9 +62,9 @@ public class NewsFragment extends Fragment {
     RelativeLayout mediaupload;
     LinearLayout upload,load;
     EditText ntitle, nbody, nlink;
-    TextView file;
+    TextView file,empty;
     Button cancel;
-    GifImageView ldgif;
+    GifImageView ldgif,ldgif2;
     Context ctx;
     ArrayList<NewsModel> newslist;
     NewsAdapter newsAdapter;
@@ -71,6 +73,7 @@ public class NewsFragment extends Fragment {
     Spinner cat;
     ArrayAdapter adapter;
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -78,6 +81,9 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         fab = view.findViewById(R.id.fab);
+        if(new Sp(view.getContext()).getLoginType()!=3){
+            fab.setVisibility(View.GONE);
+        }
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +125,8 @@ public class NewsFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(adapter);
 
+        ldgif2 = view.findViewById(R.id.ldgif2);
+        empty = view.findViewById(R.id.empty);
         load = view.findViewById(R.id.load);
         newslist= new ArrayList<>();
         ctx = view.getContext();
@@ -130,7 +138,7 @@ public class NewsFragment extends Fragment {
         RecyclerView rv = view.findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(view.getContext());
         llm.setOrientation(RecyclerView.VERTICAL);
-        newsAdapter = new NewsAdapter(getContext(), newslist, NewsFragment.this);
+        newsAdapter = new NewsAdapter(getContext(), newslist);
         rv.setAdapter(newsAdapter);
         rv.setLayoutManager(llm);
         setupTablayout(view);
@@ -154,7 +162,12 @@ public class NewsFragment extends Fragment {
                     }
                 }
                 newsAdapter.notifyDataSetChanged();
-                load.setVisibility(View.GONE);
+                if(newslist.isEmpty()){
+                    ldgif2.setVisibility(View.GONE);
+                    empty.setText("No news here");
+                }else {
+                    load.setVisibility(View.GONE);
+                }
 
             }
 
@@ -180,12 +193,28 @@ public class NewsFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
                     selecttab= "general";
+                    populatePosts();
                 } else if(tab == tabs.getTabAt(1)){
                     selecttab= "interest";
+                    if(new Sp(ctx).getLoginType()<1){
+                        ldgif2.setVisibility(View.GONE);
+                        empty.setText("You haven't shown interest yet");
+                        newslist.clear();
+                        newsAdapter.notifyDataSetChanged();
+                    }else{
+                        populatePosts();
+                    }
                 }else{
                     selecttab = "membership";
+                    if(new Sp(ctx).getLoginType()<2){
+                        ldgif2.setVisibility(View.GONE);
+                        empty.setText("You are not a member yet");
+                        newslist.clear();
+                        newsAdapter.notifyDataSetChanged();
+                    }else{
+                        populatePosts();
+                    }
                 }
-                populatePosts();
 
             }
 
@@ -198,12 +227,24 @@ public class NewsFragment extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
                     selecttab= "general";
+                    populatePosts();
                 } else if(tab == tabs.getTabAt(1)){
                     selecttab= "interest";
+                    if(new Sp(ctx).getLoginType()<1){
+                        ldgif2.setVisibility(View.GONE);
+                        empty.setText("You haven't shown interest yet");
+                    }else{
+                        populatePosts();
+                    }
                 }else{
                     selecttab = "membership";
+                    if(new Sp(ctx).getLoginType()<2){
+                        ldgif2.setVisibility(View.GONE);
+                        empty.setText("You are not a member yet");
+                    }else{
+                        populatePosts();
+                    }
                 }
-                populatePosts();
             }
         });
         tabs.addTab(tab1, 0, true);

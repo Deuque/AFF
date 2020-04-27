@@ -26,15 +26,24 @@
         android:id="@+id/form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/label"
-        android:layout_above="@id/signin">
-   <include
-       layout="@layout/fill_form"/>
+        android:layout_below="@id/label">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <include
+                android:layout_height="match_parent"
+                android:layout_width="350dp"
+                layout="@layout/payment_layout"
+                android:layout_centerHorizontal="true"/>
+            <include
+                layout="@layout/fill_form"/>
+        </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
     <ImageView
         android:id="@+id/cd"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:contentDescription="@string/nav_header_desc"
         android:src="@mipmap/close"
         android:tint="@color/aux1"
@@ -62,9 +71,10 @@
         android:layout_below="@id/cd"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
         <TextView
+            android:id="@+id/part1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1 \n Fill Form"
@@ -81,6 +91,7 @@
             android:background="@color/aux5"/>
 
         <TextView
+            android:id="@+id/part2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2 \n Payment"
@@ -90,34 +101,5 @@
             android:textStyle="bold"
             android:textSize="14sp"/>
     </LinearLayout>
-    <RelativeLayout
-        android:id="@+id/signin"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/bgshape3"
-        android:backgroundTint="@color/colorAccent">
 
-        <TextView
-            android:id="@+id/val_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/poppins"
-            android:text="Next"
-            android:textColor="@color/aux2"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <!--            <pl.droidsonroids.gif.GifImageView-->
-        <!--                android:id="@+id/lgif"-->
-        <!--                android:layout_width="40dp"-->
-        <!--                android:layout_height="40dp"-->
-        <!--                android:layout_alignParentEnd="true"-->
-        <!--                android:layout_centerInParent="true"-->
-        <!--                android:layout_marginEnd="15dp"-->
-        <!--                android:src="@drawable/ld7"-->
-        <!--                android:visibility="invisible" />-->
-    </RelativeLayout>
 </RelativeLayout>

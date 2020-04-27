@@ -3,12 +3,11 @@ package com.dcinspirations.aff.models;
 public class MemberModel {
     private String uid,email,name,category,imgurl,pass;
 
-    public MemberModel(String uid, String email, String name, String category, String imgurl, String pass) {
+    public MemberModel(String uid, String email, String name, String category, String pass) {
         this.uid = uid;
         this.email = email;
         this.name = name;
         this.category = category;
-        this.imgurl = imgurl;
         this.pass = pass;
     }
 

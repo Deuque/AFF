@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayMusicActivity">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg3"
+        android:tint="@color/mytransparent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mytransparent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient1" />
+
+    <ImageView
+        android:id="@+id/cd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bgshape1"
+        android:backgroundTint="@color/mytransparent"
+        android:contentDescription="@string/nav_header_desc"
+        android:onClick="goBack"
+        android:padding="7dp"
+        android:src="@mipmap/close"
+        android:tint="@color/aux1" />
+
+    <ImageView
+        android:id="@+id/download"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bgshape1"
+        android:backgroundTint="@color/mytransparent"
+        android:contentDescription="@string/nav_header_desc"
+        android:padding="7dp"
+        android:onClick="initDownload"
+        android:src="@mipmap/download"
+        android:tint="@color/aux1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/bgshape3"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
+        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+            android:id="@+id/labelimg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ca3"
+            app:siShape="@drawable/bgshape3" />
+
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/bgif"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ld7"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/sname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelimg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"
+            android:text="Tears of love"
+            android:textColor="@color/aux1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/aname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sname"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Dj Spinall'"
+            android:textColor="@color/aux2"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aname"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/mtimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="45dp"
+                android:text="0 / 0"
+                android:textColor="@color/aux5" />
+
+            <SeekBar
+                android:id="@+id/mprog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:max="100"
+                android:progress="0"
+                android:progressBackgroundTint="@color/aux5"
+                android:progressTint="@color/aux3" />
+
+            <ImageView
+                android:id="@+id/mcontrol"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:onClick="InitVideoPlayback"
+                android:src="@drawable/play"
+                android:tint="@color/colorAccent" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

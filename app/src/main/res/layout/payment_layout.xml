@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:layout_gravity="center"
+    android:id="@+id/payment_layout"
+    android:visibility="gone">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="AFF INTEREST FORM"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:gravity="center"-->
+<!--        android:textColor="@color/aux1"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textSize="19sp"-->
+<!--        android:textStyle="bold" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_layout2"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Email Address"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/email2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!-- Expiry Text for credit card number-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cnum_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="CARD NUMBER"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/cnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="number"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_expiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/exp_layout"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="VALID UNTIL"
+            android:textColorHint="@color/aux5"
+            app:boxStrokeWidth="2dp"
+            app:hintEnabled="true"
+            android:layout_marginEnd="20dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/exp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColor="@color/aux1"
+                android:textColorHint="@color/aux5"
+                android:textSize="16sp"
+                android:maxLength="5"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cvv_layout"
+            style="@style/Widget.AppTheme.TextInputLayoutList"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="CVV"
+            android:textColorHint="@color/aux5"
+            app:boxStrokeWidth="2dp"
+            app:hintEnabled="true">
+
+            <EditText
+                android:id="@+id/cvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="number"
+                android:maxLength="3"
+                android:padding="15dp"
+                android:textColor="@color/aux1"
+                android:textColorHint="@color/aux5"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/pay_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/pass_layout"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bgshape3"
+        android:backgroundTint="@color/aux3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins"
+            android:text="Pay NGN 1,200.00"
+            android:textColor="@color/aux2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/lgif"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ld7"
+                        android:visibility="invisible" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Secured by"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/aux5"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        android:gravity="center_horizontal">
+    <ImageView
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:src="@mipmap/paystack"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="paystack"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:textColor="@color/aux5"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

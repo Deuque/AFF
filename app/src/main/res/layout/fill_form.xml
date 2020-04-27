@@ -1,151 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Personal Info"
-            android:textColor="@color/aux1"
-            android:fontFamily="@font/poppins"
-            android:textSize="15sp"
-            android:layout_gravity="start"/>
+    android:padding="20dp"
+    android:id="@+id/form_layout"
+    android:visibility="visible">
 
-        <!--        <View-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="1dp"-->
-        <!--            android:background="@color/aux5"/>-->
 
-        <!--        <TextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="AFF Code or Email Address"-->
-        <!--            android:textColor="@color/aux1"-->
-        <!--            android:fontFamily="@font/poppins"-->
-        <!--            android:textSize="16sp"-->
-        <!--            android:layout_gravity="start"-->
-        <!--            android:layout_marginTop="20dp"/>-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/sname_layout"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:fontFamily="@font/poppins"
+        android:text="Personal Info"
+        android:textColor="@color/aux1"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/aux5" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sname_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Surname"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/sname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:hintEnabled="false">
+            android:fontFamily="@font/roboto"
+            android:hint="Surname"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/sname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Surname"
-                android:inputType="textEmailAddress"
-                android:padding="15dp"
-                android:textColor="@color/aux1"
-                android:textColorHint="@color/aux5"
-                android:fontFamily="@font/roboto"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/oname_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:hintEnabled="false">
+        android:hint="Other names"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/oname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Other names"
-            android:inputType="textEmailAddress"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
             android:padding="15dp"
             android:textColor="@color/aux1"
             android:textColorHint="@color/aux5"
-            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <include
+        layout="@layout/gender_radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/address_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:hintEnabled="false">
+        android:hint="Address"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"
-            android:inputType="textEmailAddress"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPostalAddress"
             android:padding="15dp"
             android:textColor="@color/aux1"
             android:textColorHint="@color/aux5"
-            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/num_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:hintEnabled="false">
+        android:hint="Phone number"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number"
-            android:inputType="textEmailAddress"
+            android:fontFamily="@font/roboto"
+            android:inputType="number"
             android:padding="15dp"
             android:textColor="@color/aux1"
             android:textColorHint="@color/aux5"
-            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:hintEnabled="false">
+        android:hint="Email Address"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
+            android:fontFamily="@font/roboto"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textColor="@color/aux1"
             android:textColorHint="@color/aux5"
-            android:fontFamily="@font/roboto"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/pass_layout"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pass_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Choose Password"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/aux5">
+
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:hintEnabled="false"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/aux5">
+            android:layout_below="@id/email"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/email"
+    <include
+        layout="@layout/interests_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="15dp"
-                android:textColor="@color/aux1"
-                android:textColorHint="@color/aux5"
-                android:fontFamily="@font/roboto"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <RelativeLayout
+        android:id="@+id/actions"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bgshape3"
+        android:backgroundTint="@color/colorAccent">
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/val_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins"
+            android:text="Next"
+            android:textColor="@color/aux2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!--            <pl.droidsonroids.gif.GifImageView-->
+        <!--                android:id="@+id/lgif"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_alignParentEnd="true"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:layout_marginEnd="15dp"-->
+        <!--                android:src="@drawable/ld7"-->
+        <!--                android:visibility="invisible" />-->
+    </RelativeLayout>
+
+
+
+</LinearLayout>
