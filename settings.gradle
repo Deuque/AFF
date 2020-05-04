@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':rip-sdk'
 rootProject.name='AFF'

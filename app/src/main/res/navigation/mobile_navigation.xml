@@ -7,29 +7,11 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.dcinspirations.aff.ui.home.HomeFragment"
+        android:name="com.dcinspirations.aff.ui.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
 
-
-    <fragment
-        android:id="@+id/nav_video"
-        android:name="com.dcinspirations.aff.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_article"
-        android:name="com.dcinspirations.aff.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_about"
-        android:name="com.dcinspirations.aff.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
     <fragment
         android:id="@+id/nav_members"
         android:name="com.dcinspirations.aff.ui.MembersFragment"
@@ -55,4 +37,25 @@
         android:name="com.dcinspirations.aff.ui.InterestFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_interest" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.dcinspirations.aff.ui.AboutFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/nav_other"
+        android:name="com.dcinspirations.aff.ui.OtherFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_other" />
+    <fragment
+        android:id="@+id/nav_ads"
+        android:name="com.dcinspirations.aff.ui.AdsFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_ads" />
+
+    <fragment
+        android:id="@+id/nav_memberform"
+        android:name="com.dcinspirations.aff.ui.FullTimeFragment"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_fulltime" />
 </navigation>

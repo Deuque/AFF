@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dcinspirations.aff.models.AdminModel;
@@ -18,11 +19,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class LoginClass extends AppCompatActivity {
 
     TextInputLayout elayout,playout;
     EditText email,pass;
     Context ctx;
+    GifImageView lgif;
+    TextView valaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class LoginClass extends AppCompatActivity {
         playout = findViewById(R.id.pass_layout);
         email = findViewById(R.id.email);
         pass = findViewById(R.id.password);
+        lgif = findViewById(R.id.lgif);
+        valaction = findViewById(R.id.val_action);
     }
 
     public void goBack(View v){
@@ -53,8 +60,9 @@ public class LoginClass extends AppCompatActivity {
             pass.requestFocus();
             return;
         }
-//        valaction.setText("Please wait...");
-//        lgif.setVisibility(View.VISIBLE);
+        valaction.setText("Please wait...");
+        lgif.setVisibility(View.VISIBLE);
+
         AdminLogin(emailtext,passtext);
 
     }
@@ -78,17 +86,20 @@ public class LoginClass extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                valaction.setText("Sign In");
+                lgif.setVisibility(View.GONE);
+                Toast.makeText(LoginClass.this, databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void UserLogin(final String email, final String pass) {
-        FirebaseDatabase.getInstance().getReference().child("Members_profile").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("AFFMembers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snaps:dataSnapshot.getChildren()){
                     MemberModel mm = snaps.getValue(MemberModel.class);
+                    mm.setUid(snaps.getKey());
                     if( (email.equalsIgnoreCase(mm.getEmail())&&pass.equalsIgnoreCase(mm.getPass()) ) ||
                             (email.equalsIgnoreCase(mm.getUid())&&pass.equalsIgnoreCase(mm.getPass()) )){
                         new Sp(ctx).setUid(mm.getUid());
@@ -98,18 +109,23 @@ public class LoginClass extends AppCompatActivity {
                         } else{
                             new Sp(ctx).setLoginType(1);
                         }
+                        new Sp(ctx).setUid(mm.getUid());
                         finish();
                         return;
                     }
                 }
 
+                valaction.setText("Sign In");
+                lgif.setVisibility(View.GONE);
                 Toast.makeText(LoginClass.this, "You don't have an account, fill the forms", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                valaction.setText("Sign In");
+                lgif.setVisibility(View.GONE);
+                Toast.makeText(LoginClass.this, databaseError.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

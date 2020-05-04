@@ -10,7 +10,7 @@
             android:title="@string/menu_home"
             android:checked="true"/>
         <item
-            android:id="@+id/nav_forms"
+            android:id="@+id/nav_memberform"
             android:icon="@mipmap/form"
             android:title="Membership Form" />
 
@@ -23,6 +23,10 @@
             android:id="@+id/nav_media"
             android:icon="@mipmap/music2"
             android:title="Media" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/about"
+            android:title="About AFF" />
     </group>
 
 <!--    <item android:title="">-->

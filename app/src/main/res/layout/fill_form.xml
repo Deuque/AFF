@@ -189,7 +189,7 @@
         android:backgroundTint="@color/colorAccent">
 
         <TextView
-            android:id="@+id/val_action"
+            android:id="@+id/nextaction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -199,17 +199,35 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <!--            <pl.droidsonroids.gif.GifImageView-->
-        <!--                android:id="@+id/lgif"-->
-        <!--                android:layout_width="40dp"-->
-        <!--                android:layout_height="40dp"-->
-        <!--                android:layout_alignParentEnd="true"-->
-        <!--                android:layout_centerInParent="true"-->
-        <!--                android:layout_marginEnd="15dp"-->
-        <!--                android:src="@drawable/ld7"-->
-        <!--                android:visibility="invisible" />-->
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/nextgif"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ld7"
+                        android:visibility="invisible" />
     </RelativeLayout>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="You can also get our forms from any of the locations below"
+        android:textColor="@color/aux2"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
 
 
 </LinearLayout>

@@ -72,6 +72,7 @@ public class NewsFragment extends Fragment {
     String[] Datalist = {"General","Interest","Membership"};
     Spinner cat;
     ArrayAdapter adapter;
+    View modalview;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -80,6 +81,13 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
+        modalview = view.findViewById(R.id.view);
+        modalview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaupload.setVisibility(View.GONE);
+            }
+        });
         fab = view.findViewById(R.id.fab);
         if(new Sp(view.getContext()).getLoginType()!=3){
             fab.setVisibility(View.GONE);
@@ -247,9 +255,10 @@ public class NewsFragment extends Fragment {
                 }
             }
         });
+        tabs.addTab(tab2);
+        tabs.addTab(tab3);
         tabs.addTab(tab1, 0, true);
-        tabs.addTab(tab2, 1);
-        tabs.addTab(tab3, 2);
+
     }
 
     private void uploadFile() {
@@ -275,6 +284,9 @@ public class NewsFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 ldgif.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    ntitle.setText("");
+                    nbody.setText("");
+                    nlink.setText("");
                     mediaupload.setVisibility(View.GONE);
                     Toast.makeText(ctx, "Successful", Toast.LENGTH_LONG).show();
                 }else{

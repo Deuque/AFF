@@ -20,6 +20,10 @@
             android:id="@+id/nav_media"
             android:icon="@mipmap/music2"
             android:title="Media" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/about"
+            android:title="About AFF" />
     </group>
 
 <!--    <item android:title="">-->

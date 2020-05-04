@@ -1,61 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-   <RelativeLayout
-       xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:tools="http://schemas.android.com/tools"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-    android:background="@color/mytransparent"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mytransparent">
 
-<!--       <pl.droidsonroids.gif.GifImageView-->
-<!--           android:layout_width="match_parent"-->
-<!--           android:layout_height="match_parent"-->
-<!--           android:scaleType="fitXY"-->
-<!--           android:src="@mipmap/bg3"/>-->
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bg3"/>
 
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="@color/mytransparent"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mytransparent" />
 
-       <View
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="@drawable/gradient1"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient1" />
 
 
-       <TextView
-           android:id="@+id/title"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_margin="15dp"
-           android:fontFamily="@font/poppins"
-           android:text="A.F.F Members"
-           android:textColor="@color/aux1"
-           android:textSize="20sp"
-           android:textStyle="bold"/>
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
 
-       <com.google.android.material.tabs.TabLayout
-           android:id="@+id/tabs"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_below="@id/title"
-           app:tabIndicatorColor="@color/colorAccent"
-           app:tabIndicatorHeight="2dp"
-           app:tabMode="fixed"
-           app:tabRippleColor="@color/aux5"
-           app:tabSelectedTextColor="@color/colorAccent"
-           app:tabTextColor="@color/aux7"
-           android:layout_marginEnd="8dp"/>
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-<!--       <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--           android:id="@+id/fab"-->
-<!--           android:layout_width="wrap_content"-->
-<!--           android:layout_height="wrap_content"-->
-<!--           android:layout_gravity="bottom|end"-->
-<!--           android:layout_margin="@dimen/fab_margin"-->
-<!--           android:layout_alignParentEnd="true"-->
-<!--           android:layout_alignParentBottom="true"-->
-<!--           app:srcCompat="@drawable/download" />-->
-   </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/cd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/back"
+                    android:tint="@color/aux1" />
+
+                <ImageView
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="launchAdd"
+                    android:src="@drawable/add"
+                    android:tint="@color/aux1"
+                    />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_toEndOf="@+id/cd"
+                    android:fontFamily="@font/poppins"
+                    android:text="A.F.F Members"
+                    android:textColor="@color/aux1"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:tabIndicatorColor="@color/colorAccent"
+                    app:tabIndicatorHeight="2dp"
+                    app:tabMode="fixed"
+                    app:tabRippleColor="@color/aux5"
+                    app:tabTextColor="@drawable/text_selector2" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/appbar"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:id="@+id/load"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_below="@id/rv"
+        android:visibility="visible">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/ldgif2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ld7" />
+
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Loading Members"
+            android:textColor="@color/aux5"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

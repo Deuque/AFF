@@ -21,6 +21,19 @@
 <!--        android:textSize="19sp"-->
 <!--        android:textStyle="bold" />-->
 
+    <TextView
+        android:id="@+id/success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:drawableTop="@mipmap/success"
+        android:text="Payment Successful"
+        android:textColor="@color/aux1"
+        android:fontFamily="@font/poppins"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_layout2"
         style="@style/Widget.AppTheme.TextInputLayoutList"
@@ -133,6 +146,7 @@
         android:backgroundTint="@color/aux3">
 
         <TextView
+            android:id="@+id/val_action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -184,5 +198,36 @@
         android:textSize="18sp"
         android:textStyle="bold" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/error_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/pass_layout"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bgshape3"
+        android:backgroundTint="#13BB4B"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins"
+            android:text="Upload Your Information"
+            android:textColor="@color/aux2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/egif"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ld7"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
 </LinearLayout>

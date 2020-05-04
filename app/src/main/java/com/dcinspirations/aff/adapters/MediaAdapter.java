@@ -85,7 +85,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
         private MediaModel currentObject;
         private TextView aname,sname,downloads;
         private LinearLayout mlayout;
-        private ImageView delete,label;
+        private ImageView delete,label,trend;
         PorterShapeImageView image;
 
         public void setPosition(int position) {
@@ -113,9 +113,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
             image = itemView.findViewById(R.id.image);
             label = itemView.findViewById(R.id.label);
             delete = itemView.findViewById(R.id.delete);
-
-
-
+            trend = itemView.findViewById(R.id.trend);
 
         }
 
@@ -138,16 +136,13 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
 //                        .into(image);
                 Glide.with(context)
                         .load(current.getImgUrl())
-
-//                        .thumbnail(.05f)
-                        .placeholder(R.drawable.image)
                         .into(this.image);
                 this.aname.setText("");
                 this.sname.setText("");
                 this.downloads.setVisibility(View.GONE);
                 this.label.setVisibility(View.GONE);
             }else {
-                this.image.setImageResource(R.mipmap.ca3);
+                this.image.setImageResource(R.mipmap.mbg);
                 this.aname.setText(current.getArtist());
                 this.sname.setText(current.getSong());
                 this.downloads.setVisibility(View.VISIBLE);
@@ -158,6 +153,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
             if(new Sp(context).getLoginType()!=3){
                 this.delete.setVisibility(View.GONE);
                 this.downloads.setVisibility(View.GONE);
+                this.trend.setVisibility(View.GONE);
 //                price.setTextColor(context.getColor(R.color.aux5));
             }else{
                 this.delete.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +165,9 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
                         refreshEvents();
                     }
                 });
+                if(current.getCategory().equalsIgnoreCase("normal")){
+                    this.trend.setVisibility(View.GONE);
+                }
             }
             this.position = position;
             this.currentObject = current;

@@ -1,9 +1,14 @@
 package com.dcinspirations.aff.ui;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,7 +29,25 @@ import android.widget.Toast;
 
 import com.dcinspirations.aff.MainActivity;
 import com.dcinspirations.aff.R;
+import com.dcinspirations.aff.Sp;
+import com.dcinspirations.aff.adapters.AddressAdapter;
+import com.dcinspirations.aff.models.MediaModel;
+import com.dcinspirations.aff.models.MemberModel;
+import com.dcinspirations.aff.models.OthersModel;
+import com.dcinspirations.aff.models.OthersModel2;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.remita.paymentsdk.core.RemitaInlinePaymentSDK;
+import com.remita.paymentsdk.util.RIPGateway;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
@@ -44,18 +67,24 @@ public class InterestFragment extends Fragment {
         // Required empty public constructor
     }
 
-    TextInputLayout slayout, olayout, addresslayout, numlayout, elayout, passlayout, cnumlayout, explayout,cvvlayout;
-    EditText sname, oname, address, num, email, email2,pass, cnum,cvv;
+    TextInputLayout slayout, olayout, addresslayout, numlayout, elayout, passlayout, cnumlayout, explayout, cvvlayout;
+    EditText sname, oname, address, num, email, email2, pass, cnum, cvv;
     AutoCompleteTextView exp;
     RadioGroup gendergroup, interestgroup;
-    TextView part1, part2, valaction;
-    RelativeLayout actions;
+    TextView part1, part2, valaction,success;
+    RelativeLayout actions,errbutton;
     RelativeLayout pay;
-    GifImageView ldgif;
-    LinearLayout formlayout,paymentlayout;
+    GifImageView ldgif,egif;
+    LinearLayout formlayout, paymentlayout;
     ImageView cd;
-    int checked =0;int checked2 = 0;
+    int checked = 0;
+    int checked2 = 0;
     int part = 1;
+    MemberModel memberModel;
+    Context ctx;
+
+    ArrayList<OthersModel2> omlist;
+    AddressAdapter addressAdapter;
 
 
     @Override
@@ -64,13 +93,15 @@ public class InterestFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_interest, container, false);
 
+        omlist = new ArrayList<>();
         cd = view.findViewById(R.id.cd);
         cd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).onBackPressed();
+                ((MainActivity) getActivity()).onBackPressed();
             }
         });
+        ctx = view.getContext();
         slayout = view.findViewById(R.id.sname_layout);
         olayout = view.findViewById(R.id.oname_layout);
         addresslayout = view.findViewById(R.id.address_layout);
@@ -88,7 +119,7 @@ public class InterestFragment extends Fragment {
         address = view.findViewById(R.id.address);
         num = view.findViewById(R.id.num);
         email = view.findViewById(R.id.email);
-        email2= view.findViewById(R.id.email2);
+        email2 = view.findViewById(R.id.email2);
         pass = view.findViewById(R.id.password);
         exp = view.findViewById(R.id.exp);
         exp.addTextChangedListener(new TextWatcher() {
@@ -99,8 +130,8 @@ public class InterestFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(exp.getText().toString().length()==2){
-                    exp.setText(exp.getText().toString()+"/");
+                if (exp.getText().toString().length() == 2) {
+                    exp.setText(exp.getText().toString() + "/");
                     exp.setSelection(exp.getText().length());
                 }
             }
@@ -154,15 +185,62 @@ public class InterestFragment extends Fragment {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ldgif.getVisibility()!=View.VISIBLE) {
+                if (ldgif.getVisibility() != View.VISIBLE&&!valaction.getText().toString().equalsIgnoreCase("payment successful")) {
                     checkCardDetails();
                 }
             }
         });
+
+        success = view.findViewById(R.id.success);
+        errbutton = view.findViewById(R.id.error_button);
+        errbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(egif.getVisibility()!=View.VISIBLE) {
+                    egif.setVisibility(View.VISIBLE);
+                    uploadData();
+                }
+            }
+        });
+        egif = view.findViewById(R.id.egif);
         return view;
     }
 
-    private void checkFields(){
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addressAdapter = new AddressAdapter(ctx,omlist);
+        RecyclerView lrv = view.findViewById(R.id.rv);
+        LinearLayoutManager llm = new LinearLayoutManager(ctx);
+        llm.setOrientation(RecyclerView.VERTICAL);
+        lrv.setLayoutManager(llm);
+        lrv.setAdapter(addressAdapter);
+        getOtherItems();
+    }
+
+    private void getOtherItems(){
+
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("AffOthers").child("addresslocations");
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                omlist.clear();
+
+                        for(DataSnapshot snaps:dataSnapshot.getChildren()){
+                            OthersModel2 om = snaps.getValue(OthersModel2.class);
+                            omlist.add(om);
+                        }
+                addressAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    private void checkFields() {
         String stext = sname.getText().toString();
         String otext = oname.getText().toString();
         String addrtext = address.getText().toString();
@@ -171,34 +249,35 @@ public class InterestFragment extends Fragment {
         String ptext = pass.getText().toString();
         String gendtext;
         String interesttext;
-        EditText[] editTexts = {sname,oname,address,num,email,pass};
-        for(EditText e:editTexts){
-            if(e.getText().toString().isEmpty()){
+        EditText[] editTexts = {sname, oname, address, num, email, pass};
+        for (EditText e : editTexts) {
+            if (e.getText().toString().isEmpty()) {
                 TextInputLayout textInputLayout = (TextInputLayout) e.getParent().getParent();
                 textInputLayout.setError("Don't skip this part");
                 e.requestFocus();
                 return;
             }
         }
-        if(checked==0){
+        if (checked == 0) {
             Toast.makeText(getContext(), "Not Filled: Select a gender", Toast.LENGTH_LONG).show();
             return;
-        }else{
+        } else {
             RadioButton rb1 = getView().findViewById(gendergroup.getCheckedRadioButtonId());
             gendtext = rb1.getText().toString();
         }
-        if(checked2==0){
+        if (checked2 == 0) {
             Toast.makeText(getContext(), "Not Filled: Select an interest", Toast.LENGTH_LONG).show();
             return;
-        }else{
+        } else {
             RadioButton rb2 = getView().findViewById(interestgroup.getCheckedRadioButtonId());
             interesttext = rb2.getText().toString();
         }
-        if(ptext.length()<6){
+        if (ptext.length() < 6) {
             Toast.makeText(getContext(), "Weak password: You can do better.", Toast.LENGTH_LONG).show();
             return;
         }
 
+        memberModel = new MemberModel(etext, stext + " " + otext, "interest", ptext, addrtext, ntext, gendtext, interesttext);
         part1.setTextColor(getResources().getColor(R.color.aux5));
         part2.setTextColor(getResources().getColor(R.color.colorAccent));
         formlayout.setVisibility(View.GONE);
@@ -208,14 +287,14 @@ public class InterestFragment extends Fragment {
 
     }
 
-    private void checkCardDetails(){
+    private void checkCardDetails() {
         String etext2 = email2.getText().toString();
         String cntext = cnum.getText().toString();
         String exptext = exp.getText().toString();
         String cvvrtext = cvv.getText().toString();
-        EditText[] editTexts = {email2,cnum,exp,cvv};
-        for(EditText e:editTexts){
-            if(e.getText().toString().isEmpty()){
+        EditText[] editTexts = {email2, cnum, exp, cvv};
+        for (EditText e : editTexts) {
+            if (e.getText().toString().isEmpty()) {
                 TextInputLayout textInputLayout = (TextInputLayout) e.getParent().getParent();
                 textInputLayout.setError("required");
                 return;
@@ -223,7 +302,7 @@ public class InterestFragment extends Fragment {
         }
 
         ldgif.setVisibility(View.VISIBLE);
-        valaction.setText("Processing..");
+        valaction.setText("Processing Payment..");
         String cardNumber = "4084084084084081";
 
         int expiryMonth = 12; //any month in the future
@@ -233,11 +312,11 @@ public class InterestFragment extends Fragment {
         String cvv = "408";
         Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
 //        Card card = new Card(cntext,Integer.parseInt(exptext.substring(0,exptext.indexOf("/")-1)) , Integer.parseInt(exptext.substring(exptext.indexOf("/")-1,exptext.length()-1)), cvvrtext);
-        Toast.makeText(getContext(), exptext.substring(0,exptext.indexOf("/")) + " " + exptext.substring(exptext.indexOf("/"),exptext.length()), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), exptext.substring(0, exptext.indexOf("/")) + " " + exptext.substring(exptext.indexOf("/"), exptext.length()), Toast.LENGTH_LONG).show();
 
-        if(card.isValid()){
-            performCharge(card,etext2);
-        }else{
+        if (card.isValid()) {
+            performCharge(card, etext2);
+        } else {
             Toast.makeText(getContext(), "Invalid Card", Toast.LENGTH_LONG).show();
             ldgif.setVisibility(View.GONE);
             valaction.setText("Pay NGN 1,200.00");
@@ -264,15 +343,16 @@ public class InterestFragment extends Fragment {
                 // This is called only after transaction is deemed successful.
                 // Retrieve the transaction, and send its reference to your server
                 // for verification.
-                ldgif.setVisibility(View.GONE);
-                valaction.setText("Pay NGN 1,200.00");
+                valaction.setText("Uploading Data...");
                 email2.setText("");
                 cnum.setText("");
                 exp.setText("");
                 cvv.setText("");
+                success.setVisibility(View.VISIBLE);
                 String paymentReference = transaction.getReference();
                 Toast.makeText(getActivity(), "Transaction Successful! payment reference: "
                         + paymentReference, Toast.LENGTH_LONG).show();
+                uploadData();
             }
 
             @Override
@@ -287,8 +367,79 @@ public class InterestFragment extends Fragment {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 ldgif.setVisibility(View.GONE);
                 valaction.setText("Pay NGN 1,200.00");
+
             }
         });
     }
 
+    private void performCharge2(){
+        String amount = "1500";
+        String url = RIPGateway.Endpoint.DEMO;
+        String api_key = "QzAwMDAxMTU0MDF8MTUwOTM3NzUwMjMzNXw2MGFmMDZjYTk4ZWYwNzgyMjIzMDQ5MTY4MmZhMWYwODFlMTAwODg3NDczMzRkYjFjNWQ5MGMzZmM5ZDQwNDEyMmQ1ZThhZjAwM2YyMmU5ZDA1ZjZkM2QyNTg3OWYyZDFhMDRlYjE4NDM3MjVhODYwOGYxMjdhYmJmNzRkYmQwMA==";
+        String email = "diagboya@systemspecs.com.ng";
+        String currencyCode = "NGN";
+        String firstName = "Iyare";
+        String lastName = "Diagboya";
+        String customerId = "diagboya@systemspecs.com.ng";
+        String phoneNumber = "07031731478";
+        String transactionId = String.valueOf(new Date().getTime());
+        String returnUrl = "https://www.remita.net";
+        String narration = "Bugatti Chiron 2020";
+
+        RemitaInlinePaymentSDK remitaInlinePaymentSDK = RemitaInlinePaymentSDK.getInstance();
+        remitaInlinePaymentSDK.initiatePayment(getActivity(), url, api_key, email,
+                amount, currencyCode, firstName, lastName, customerId, phoneNumber, transactionId, returnUrl, narration);
+    }
+
+    private void uploadData() {
+
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("AFFMembers");
+        dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> mlist = new ArrayList<>();
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    String key = snap.getKey();
+                    mlist.add(key);
+                }
+                String newUid = "";
+                if (mlist.size() > 0) {
+                    String lkstring = mlist.get(mlist.size() - 1);
+                    long lastkey = Long.parseLong(lkstring.substring(lkstring.indexOf("-") + 1, lkstring.length()));
+                    newUid = "AFF-" + Long.toString(lastkey + 00001);
+                } else {
+                    newUid = "AFF-00001";
+                }
+                memberModel.setUid(newUid);
+
+                dbref.child(newUid).setValue(memberModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            new Sp(ctx).setLoginType(1);
+                            new Sp(ctx).setUid(memberModel.getUid());
+                            Toast.makeText(getContext(), "Congratulations, Interest submitted successfully", Toast.LENGTH_LONG).show();
+                            ((MainActivity) getActivity()).onBackPressed();
+                            ((MainActivity) getActivity()).updateData(memberModel.getUid());
+                        } else {
+                            errbutton.setVisibility(View.VISIBLE);
+                            valaction.setText("Payment successful");
+                            ldgif.setVisibility(View.GONE);
+                            egif.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                errbutton.setVisibility(View.VISIBLE);
+                valaction.setText("Payment successful");
+                ldgif.setVisibility(View.GONE);
+                egif.setVisibility(View.GONE);
+                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

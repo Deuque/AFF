@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,6 +90,11 @@ public class MediaFragment extends Fragment {
     String selecttab="audio";
     SliderView sliderView;
     SliderAdapter adapter;
+    String[] Datalist = {"Normal","Trending"};
+    Spinner cat;
+    ArrayAdapter arradapter;
+    View modalview;
+
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -96,6 +103,13 @@ public class MediaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_media, container, false);
 
+        modalview = view.findViewById(R.id.view);
+        modalview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaupload.setVisibility(View.GONE);
+            }
+        });
         mm = view.findViewById(R.id.mediamain);
         slider = view.findViewById(R.id.slider);
         sliderView = view.findViewById(R.id.imageSlider);
@@ -159,6 +173,10 @@ public class MediaFragment extends Fragment {
         ldgif2 = view.findViewById(R.id.lgif2);
         empty = view.findViewById(R.id.empty);
 
+        cat = view.findViewById(R.id.cat);
+        arradapter = new ArrayAdapter<>(view.getContext(),R.layout.spinner_layout,Datalist);
+        arradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cat.setAdapter(arradapter);
         ctx = view.getContext();
         return view;
     }
@@ -180,7 +198,7 @@ public class MediaFragment extends Fragment {
         mm.setVisibility(View.GONE);
         slider.setVisibility(View.VISIBLE);
 
-        adapter = new SliderAdapter(getContext(), medialist,1);
+        adapter = new SliderAdapter(getContext(), medialist,1,null);
         sliderView.setSliderAdapter(adapter);
         adapter.notifyDataSetChanged();
 //        sliderView.setIndicatorAnimation(IndicatorAnimations.FILL); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -266,8 +284,9 @@ public class MediaFragment extends Fragment {
                 populatePosts();
             }
         });
+        tabs.addTab(tab2);
         tabs.addTab(tab1, 0, true);
-        tabs.addTab(tab2, 1);
+
     }
 
     public void checkPerm() {
@@ -360,6 +379,7 @@ public class MediaFragment extends Fragment {
     private void uploadFile() {
         final String atext;
         final String stext;
+        final String scat;
         if(type.equalsIgnoreCase("audio")) {
             atext= aname.getText().toString().trim();
              stext= sname.getText().toString().trim();
@@ -377,10 +397,11 @@ public class MediaFragment extends Fragment {
             atext = "";
             stext = "";
         }
+        scat = cat.getSelectedItem().toString();
         ldgif.setVisibility(View.VISIBLE);
 
         final String filename = System.currentTimeMillis() + "";
-        final MediaModel mediaModel = new MediaModel("", atext, stext, type);
+        final MediaModel mediaModel = new MediaModel("", atext, stext, type,scat);
         final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("AffMedia")
                 .child(filename);
         storageReference.putFile(fileuri)

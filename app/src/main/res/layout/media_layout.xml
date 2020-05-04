@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ca3"
+                android:src="@mipmap/placeholder"
                 app:siShape="@drawable/bgshape3"
 
                 />
@@ -32,7 +32,14 @@
                 android:layout_height="80dp"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/gradient3" />
-
+            <ImageView
+                android:id="@+id/trend"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/trend"
+                android:layout_margin="5dp"/>
             <ImageView
                 android:id="@+id/delete"
                 android:layout_width="wrap_content"

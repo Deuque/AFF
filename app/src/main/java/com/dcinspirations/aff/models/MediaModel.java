@@ -1,16 +1,25 @@
 package com.dcinspirations.aff.models;
 
 public class MediaModel {
-    private String imgUrl,artist,song,type,download,key;
+    private String imgUrl,artist,song,type,download,category,key;
 
-    public MediaModel(String imgUrl, String artist, String song, String type) {
+    public MediaModel(String imgUrl, String artist, String song, String type,String category) {
         this.imgUrl = imgUrl;
         this.artist = artist;
         this.song = song;
         this.type = type;
+        this.category = category;
     }
 
     public MediaModel() {
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDownload() {

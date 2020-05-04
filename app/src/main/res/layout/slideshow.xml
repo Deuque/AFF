@@ -4,7 +4,6 @@
     android:id="@+id/slider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/search"
     android:background="@color/mytransparent"
     android:visibility="gone">
 

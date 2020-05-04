@@ -1,17 +1,52 @@
 package com.dcinspirations.aff.models;
 
 public class MemberModel {
-    private String uid,email,name,category,imgurl,pass;
+    private String uid,email,name,category,pass,address,num,gender,interest;
 
-    public MemberModel(String uid, String email, String name, String category, String pass) {
-        this.uid = uid;
+    public MemberModel(String email, String name, String category, String pass, String address, String num, String gender, String interest) {
         this.email = email;
         this.name = name;
         this.category = category;
         this.pass = pass;
+        this.address = address;
+        this.num = num;
+        this.gender = gender;
+        this.interest = interest;
     }
 
     public MemberModel() {
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String interest) {
+        this.interest = interest;
     }
 
     public String getPass() {
@@ -52,13 +87,5 @@ public class MemberModel {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getImgurl() {
-        return imgurl;
-    }
-
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl;
     }
 }

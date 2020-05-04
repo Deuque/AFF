@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:id="@+id/form_layout"
+    android:visibility="visible">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:fontFamily="@font/poppins"
+        android:text="Additional Info"
+        android:textColor="@color/aux1"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/aux5" />
+
+    <RelativeLayout
+        android:id="@+id/img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/bgshape3"
+        android:layout_marginTop="15dp">
+        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+            android:id="@+id/pimg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:siShape="@drawable/bgshape3"/>
+        <TextView
+            android:id="@+id/add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image"
+            android:layout_centerInParent="true"
+            android:textColor="@color/aux2"
+            android:drawableStart="@drawable/add_image"
+            android:drawableTint="@color/aux2"
+            android:drawablePadding="8dp"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/stage_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Stage Name"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/sname2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pb_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Place of Birth"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/pob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <include-->
+<!--        layout="@layout/gender_radio"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="10dp" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lgo_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="L.G.A of Origin"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/lgo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPostalAddress"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/so_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="State of Origin"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/so"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nat_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Nationality"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true">
+
+        <EditText
+            android:id="@+id/nat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sor_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="State of Residence"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/sor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loe_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Level of Education"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/loe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ms_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Marital Status"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/ms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ref_layout"
+        style="@style/Widget.AppTheme.TextInputLayoutList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Name/Phone no. of Referee/Sponsor"
+        android:textColorHint="@color/aux5"
+        app:boxStrokeWidth="2dp"
+        app:hintEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/ref"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@color/aux1"
+            android:textColorHint="@color/aux5"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+<!--    <include-->
+<!--        layout="@layout/interests_form"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp" />-->
+
+    <RelativeLayout
+        android:id="@+id/actions"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bgshape3"
+        android:backgroundTint="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/nextaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins"
+            android:text="Next"
+            android:textColor="@color/aux2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+                    <pl.droidsonroids.gif.GifImageView
+                        android:id="@+id/nextgif"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ld7"
+                        android:visibility="invisible" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

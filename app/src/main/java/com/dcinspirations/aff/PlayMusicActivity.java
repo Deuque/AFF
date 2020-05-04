@@ -268,62 +268,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                     Toast.makeText(PlayMusicActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
-//                setUpPlayer();
-//                simpleExoPlayer.addListener(new Player.EventListener() {
-//                    @Override
-//                    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onLoadingChanged(boolean isLoading) {
-//                        if(!isLoading){
-//                            prepared=true;
-//                            setDuration();
-//                            buffergif.setVisibility(View.INVISIBLE);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onRepeatModeChanged(int repeatMode) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onPlayerError(ExoPlaybackException error) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onPositionDiscontinuity(int reason) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSeekProcessed() {
-//
-//                    }
-//                });
+
             } else {
 
             }

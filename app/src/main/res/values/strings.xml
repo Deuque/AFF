@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AFF</string>
+    <string name="app_name">AFF \n Entertainment \n world</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -15,17 +15,37 @@
     <string name="menu_send">Send</string>
 
     <string name="msdefinition">AFF Simply means Atmosphere For Favour. The primary aim is Lifting people from zero to hero via their gifts. Our vision includes:
+    \n1. To Build gifted people’s empire where everyone can become a mega super star through his/her God’s giving gifts
+        \n2. To enable people and ensure that people’s God’s giving gifts is blessing them and the world around them megally
     </string>
-    <string name="vision1">1. To Build gifted people’s empire where everyone can become a mega super star through his/her God’s giving gifts  </string>
-    <string name="vision2">2. To enable people and ensure that people’s God’s giving gifts is blessing them and the world around them megally </string>
-    <string name="cp1">1. You must make your career to be you (You must be possessed by the thing you do)</string>
-    <string name="cp2">2. What you’re doing is an intangible business</string>
-    <string name="cp3">3. Aff is a Gifted people’s Empire </string>
-    <string name="cp4">4. Aff is a Global Entertainment world that makes you a blessing around the world because your gift is your life</string>
-    <string name="cp5">5. Aff is a helping house where anyone who comes in is helped </string>
-    <string name="cp6">6. Aff is a place of success and not a place of stress </string>
-    <string name="cp7">7. Aff is a world where your God’s giving gift must shine out to your world</string>
-    <string name="cp8">8. Aff makes your life what it oughts to be</string>
+    <string name="cpursuit">\n1. You must make your career to be you (You must be possessed by the thing you do)
+    \n2. What you’re doing is an intangible business
+    \n3. Aff is a Gifted people’s Empire
+    \n4. Aff is a Global Entertainment world that makes you a blessing around the world because your gift is your life
+    \n6. Aff is a place of success and not a place of stress
+    \n5. Aff is a helping house where anyone who comes in is helped
+    \n7. Aff is a world where your God’s giving gift must shine out to your world
+    \n8. Aff makes your life what it oughts to be</string>
+
+
+    <string name="interest_form">A.F.F Entertainment World International is a registered company with the primary objective of empowering talented people to fully develop their God\'s given talents in various
+ areas of entertainment such as Music, Film/Movies, Dancing, Modelling, Script Writing, Comedy etc.
+
+\n \n Therefoe, if you are convinced within yourself that you have a talent that you want to pursue in your life, you are eligible to be part of A.F.F big project "Utilizing yoour potential".
+
+\n \n You are therefore obliged to obtain your membership form for NGN10000. This can be paid with three or two time installments whereby payment duration is within a month. You can even pay it once to speed up your
+effectiveness with A.F.F. as fast as possible and start participating fully in our programs. In case you wish to pay in through the bank. Acc. no- 0041095899 Diamond Bank Plc. Acc. Name: A.F.F Entertainment
+World Int. Ltd.</string>
+
+    <string name="member_form"> A fully registered member of A.F.F. is one who has picked interest form, agreeg with the rules and regulations guiding
+    the company and has fulfilled the financial obligations of membership.
+    \n \n Entitlements: A registered member of A.F.F qualifies and stands the chance of engaging in A.F.F. activities such as;
+    \n a. Attending the general meetings of A.F.F
+    \n b. Being carried along in A.F.F. programs
+    \n c. Standing as an ambassador in any town, city and country where A.F.F. covers
+    \n d. Using A.F.F. properties e.g.Studio
+    \n e. Stand the chance of being promoted and empowered to acquire his/her God given gifts/talents.
+    \n f. Featuring in shows and other entertainment outfits organised by A.F.F.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
