@@ -75,7 +75,7 @@ public class LoginClass extends AppCompatActivity {
                     AdminModel am = snaps.getValue(AdminModel.class);
                     if(email.equalsIgnoreCase(am.getA_email())&&pass.equalsIgnoreCase(am.getA_pass())){
                         new Sp(ctx).setLoginType(3);
-
+                        new Sp(ctx).setUid("admin");
                         finish();
                         return;
                     }

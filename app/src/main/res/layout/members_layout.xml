@@ -9,6 +9,17 @@
     android:background="@drawable/bgshape3"
     android:layout_marginTop="10dp">
 
+    <TextView
+        android:id="@+id/ptype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="paid"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_gravity="end"/>
+
         <TextView
             android:id="@+id/affid"
             android:layout_width="wrap_content"

@@ -1,5 +1,7 @@
 package com.dcinspirations.aff;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import com.dcinspirations.aff.models.MemberModel;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.navigation.NavController;
@@ -19,6 +23,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.dcinspirations.aff.models.NewsModel;
 import com.dcinspirations.aff.ui.ExcosFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +48,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import co.paystack.android.PaystackSdk;
+
+import static com.dcinspirations.aff.BaseApp.CHANNEL_1_ID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        checkForMessages();
 
     }
 
@@ -191,6 +199,81 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void checkForMessages(){
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("AffNews");
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                final ArrayList<NewsModel> nlist = new ArrayList<>();
+                for (final DataSnapshot snaps : dataSnapshot.getChildren()) {
+
+                    final NewsModel mm = snaps.getValue(NewsModel.class);
+                    mm.setNkey(snaps.getKey());
+                    nlist.add(mm);
+
+                    if(new Sp(ctx).getUid().equalsIgnoreCase("")){
+                        if(nlist.size()<=3){
+                            AddNotification(ctx,mm.getNtitle(),mm.getNbody(),nlist.indexOf(mm));
+                        }
+                    }else {
+
+                        dbref.child(mm.getNkey()).child("Viewers").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot snaps : dataSnapshot.getChildren()) {
+                                    if (snaps.getValue().toString().equalsIgnoreCase(new Sp(ctx).getUid())) {
+                                        return;
+                                    }
+                                }
+
+                                AddNotification(ctx, mm.getNtitle(), mm.getNbody(), nlist.indexOf(mm));
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    private void AddNotification(Context ctx, String Title, String message,int id){
+        NotificationManagerCompat notificationManagerCompat;
+        notificationManagerCompat = NotificationManagerCompat.from(ctx);
+        Intent notifyIntent = new Intent(ctx, MainActivity.class);
+
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                ctx, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        Notification notification = new NotificationCompat.Builder(ctx,CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.logo1)
+                .setContentTitle(Title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setContentIntent(notifyPendingIntent)
+                .setAutoCancel(true)
+                .build();
+
+
+        notificationManagerCompat.notify(id,notification);
     }
 
     @Override

@@ -293,11 +293,10 @@ public class AdsFragment extends Fragment {
         if (requestCode == req2 && resultCode == getActivity().RESULT_OK && data != null) {
             fileuri = data.getData();
             try {
-                details = getFileDetails(fileuri.toString());
+                details = getFileDetails(fileuri.getPath());
             }catch (Exception e){
                 type = "image";
             }
-            Toast.makeText(ctx, fileuri.getPath(), Toast.LENGTH_LONG).show();
             if (fileuri.toString().contains("image")||fileuri.getPath().contains("jpg")||fileuri.getPath().contains("png")) {
                 type = "image";
             } else if (fileuri.toString().contains("video")||fileuri.getPath().contains("mp4")) {

@@ -43,8 +43,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.remita.paymentsdk.core.RemitaInlinePaymentSDK;
-import com.remita.paymentsdk.util.RIPGateway;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,6 +83,7 @@ public class InterestFragment extends Fragment {
 
     ArrayList<OthersModel2> omlist;
     AddressAdapter addressAdapter;
+    int e;
 
 
     @Override
@@ -125,14 +124,16 @@ public class InterestFragment extends Fragment {
         exp.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                e = count;
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (exp.getText().toString().length() == 2) {
-                    exp.setText(exp.getText().toString() + "/");
-                    exp.setSelection(exp.getText().length());
+                if(count>e) {
+                    if (exp.getText().toString().length() == 2) {
+                        exp.setText(exp.getText().toString() + "/");
+                        exp.setSelection(exp.getText().length());
+                    }
                 }
             }
 
@@ -164,10 +165,12 @@ public class InterestFragment extends Fragment {
         part1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                part1.setTextColor(getResources().getColor(R.color.colorAccent));
-                part2.setTextColor(getResources().getColor(R.color.aux5));
-                formlayout.setVisibility(View.VISIBLE);
-                paymentlayout.setVisibility(View.GONE);
+                if(ldgif.getVisibility()!=View.VISIBLE) {
+                    part1.setTextColor(getResources().getColor(R.color.colorAccent));
+                    part2.setTextColor(getResources().getColor(R.color.aux5));
+                    formlayout.setVisibility(View.VISIBLE);
+                    paymentlayout.setVisibility(View.GONE);
+                }
             }
         });
         part2 = view.findViewById(R.id.part2);
@@ -288,10 +291,10 @@ public class InterestFragment extends Fragment {
     }
 
     private void checkCardDetails() {
-        String etext2 = email2.getText().toString();
-        String cntext = cnum.getText().toString();
-        String exptext = exp.getText().toString();
-        String cvvrtext = cvv.getText().toString();
+        String etext2 = email2.getText().toString().trim();
+        String cntext = cnum.getText().toString().trim();
+        String exptext = exp.getText().toString().trim();
+        String cvvrtext = cvv.getText().toString().trim();
         EditText[] editTexts = {email2, cnum, exp, cvv};
         for (EditText e : editTexts) {
             if (e.getText().toString().isEmpty()) {
@@ -310,16 +313,21 @@ public class InterestFragment extends Fragment {
         int expiryYear = 2020; // any year in the future
 
         String cvv = "408";
-        Card card = new Card(cardNumber, expiryMonth, expiryYear, cvv);
+        try {
+            Card card = new Card(cntext, Integer.parseInt(exptext.substring(0, exptext.indexOf("/"))), Integer.parseInt("20"+exptext.substring(exptext.indexOf("/")+1)), cvvrtext);
 //        Card card = new Card(cntext,Integer.parseInt(exptext.substring(0,exptext.indexOf("/")-1)) , Integer.parseInt(exptext.substring(exptext.indexOf("/")-1,exptext.length()-1)), cvvrtext);
-        Toast.makeText(getContext(), exptext.substring(0, exptext.indexOf("/")) + " " + exptext.substring(exptext.indexOf("/"), exptext.length()), Toast.LENGTH_LONG).show();
 
-        if (card.isValid()) {
-            performCharge(card, etext2);
-        } else {
-            Toast.makeText(getContext(), "Invalid Card", Toast.LENGTH_LONG).show();
+            if (card.isValid()) {
+                performCharge(card, etext2);
+            } else {
+                Toast.makeText(getContext(), "Invalid Card, Check details again", Toast.LENGTH_LONG).show();
+                ldgif.setVisibility(View.GONE);
+                valaction.setText("Pay NGN 1,200.00");
+            }
+        }catch (Exception e){
             ldgif.setVisibility(View.GONE);
             valaction.setText("Pay NGN 1,200.00");
+            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -333,9 +341,9 @@ public class InterestFragment extends Fragment {
         //call this method if you set a plan
         //charge.setPlan("PLN_yourplan");
 
-        charge.setEmail("mytestemail@test.com"); //dummy email address
+        charge.setEmail(email); //dummy email address
 
-        charge.setAmount(100); //test amount
+        charge.setAmount(155000); //test amount
 
         PaystackSdk.chargeCard(getActivity(), charge, new Paystack.TransactionCallback() {
             @Override
@@ -372,24 +380,6 @@ public class InterestFragment extends Fragment {
         });
     }
 
-    private void performCharge2(){
-        String amount = "1500";
-        String url = RIPGateway.Endpoint.DEMO;
-        String api_key = "QzAwMDAxMTU0MDF8MTUwOTM3NzUwMjMzNXw2MGFmMDZjYTk4ZWYwNzgyMjIzMDQ5MTY4MmZhMWYwODFlMTAwODg3NDczMzRkYjFjNWQ5MGMzZmM5ZDQwNDEyMmQ1ZThhZjAwM2YyMmU5ZDA1ZjZkM2QyNTg3OWYyZDFhMDRlYjE4NDM3MjVhODYwOGYxMjdhYmJmNzRkYmQwMA==";
-        String email = "diagboya@systemspecs.com.ng";
-        String currencyCode = "NGN";
-        String firstName = "Iyare";
-        String lastName = "Diagboya";
-        String customerId = "diagboya@systemspecs.com.ng";
-        String phoneNumber = "07031731478";
-        String transactionId = String.valueOf(new Date().getTime());
-        String returnUrl = "https://www.remita.net";
-        String narration = "Bugatti Chiron 2020";
-
-        RemitaInlinePaymentSDK remitaInlinePaymentSDK = RemitaInlinePaymentSDK.getInstance();
-        remitaInlinePaymentSDK.initiatePayment(getActivity(), url, api_key, email,
-                amount, currencyCode, firstName, lastName, customerId, phoneNumber, transactionId, returnUrl, narration);
-    }
 
     private void uploadData() {
 
@@ -411,6 +401,7 @@ public class InterestFragment extends Fragment {
                     newUid = "AFF-00001";
                 }
                 memberModel.setUid(newUid);
+                memberModel.setPaymenttype("self");
 
                 dbref.child(newUid).setValue(memberModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

@@ -1,7 +1,7 @@
 package com.dcinspirations.aff.models;
 
 public class MemberModel {
-    private String uid,email,name,category,pass,address,num,gender,interest;
+    private String uid,email,name,category,pass,address,num,gender,interest,paymenttype;
 
     public MemberModel(String email, String name, String category, String pass, String address, String num, String gender, String interest) {
         this.email = email;
@@ -15,6 +15,14 @@ public class MemberModel {
     }
 
     public MemberModel() {
+    }
+
+    public String getPaymenttype() {
+        return paymenttype;
+    }
+
+    public void setPaymenttype(String paymenttype) {
+        this.paymenttype = paymenttype;
     }
 
     public String getAddress() {

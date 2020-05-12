@@ -84,6 +84,30 @@
                     app:tabMode="fixed"
                     app:tabRippleColor="@color/aux5"
                     app:tabTextColor="@drawable/text_selector2" />
+                <TextView
+                    android:id="@+id/admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/tabs"
+                    android:fontFamily="@font/poppins"
+                    android:text="admin: 308"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/self"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/admin"
+                    android:fontFamily="@font/poppins"
+                    android:text="self: 308"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

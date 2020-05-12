@@ -1,7 +1,9 @@
 package com.dcinspirations.aff.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,7 +103,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.viewHolder> {
         }
 
 
-        public void setData(NewsModel current, int position) {
+        public void setData(final NewsModel current, int position) {
 
             if(new Sp(context).getLoginType()!=3){
                 this.delete.setVisibility(View.GONE);
@@ -121,6 +123,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.viewHolder> {
             this.date.setText(current.getDate());
             this.body.setText(current.getNbody());
             this.link.setText(current.getNlink());
+            this.link.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    context.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(current.getNlink())));
+                }
+            });
 
             this.position = position;
             this.currentObject = current;

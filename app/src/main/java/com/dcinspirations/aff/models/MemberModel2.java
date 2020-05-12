@@ -1,7 +1,7 @@
 package com.dcinspirations.aff.models;
 
 public class MemberModel2 {
-    private String stage_name,place_birth,lga_origin,s_origin,nationality,lga_reside,edu_level,mar_status,ref,imgUrl;
+    private String stage_name,place_birth,lga_origin,s_origin,nationality,lga_reside,edu_level,mar_status,ref,imgUrl,paymenttype2;
 
     public MemberModel2(String stage_name, String place_birth, String lga_origin, String s_origin, String nationality, String lga_reside, String edu_level, String mar_status, String ref) {
         this.stage_name = stage_name;
@@ -16,6 +16,14 @@ public class MemberModel2 {
     }
 
     public MemberModel2() {
+    }
+
+    public String getPaymenttype2() {
+        return paymenttype2;
+    }
+
+    public void setPaymenttype2(String paymenttype2) {
+        this.paymenttype2 = paymenttype2;
     }
 
     public String getImgUrl() {

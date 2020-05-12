@@ -17,6 +17,7 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.dcinspirations.aff.R;
 import com.dcinspirations.aff.models.MediaModel;
 import com.dcinspirations.aff.models.SliderModel;
@@ -146,6 +147,10 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.viewHolder> {
                         }
                     });
 
+                    long interval = 1000;
+                    RequestOptions options = new RequestOptions().frame(interval);
+                    Glide.with(context).asBitmap().load(current.getImgUrl()).apply(options).into(this.img);
+
                 }else{
                     this.img.setVisibility(View.VISIBLE);
                     this.carvid.setVisibility(View.GONE);
@@ -164,7 +169,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.viewHolder> {
 
             Glide.with(context)
                     .load(current.getImgUrl())
-                    .centerCrop()
+                    .fitCenter()
                     .into(this.img);
 
 
@@ -174,13 +179,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.viewHolder> {
             this.currentObject2 = current;
         }
 
-        public void setUpVideo(VideoView mediaPlayer, final GifImageView buffergif){
 
-        }
-        private boolean isViewOnScreen(View view) {
-            Rect r = new Rect();
-            return view.getGlobalVisibleRect(r);
-        }
 
         class VidTask extends AsyncTask<VideoView, Integer, Void> {
             boolean isPlaying = false, prepared = false, iscompleted = false, askingPerm = false;

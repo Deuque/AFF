@@ -86,6 +86,21 @@ public class AdminInterest extends AppCompatActivity {
         nextaction = findViewById(R.id.nextaction);
         nextaction.setText("Submit");
         ngif=findViewById(R.id.nextgif);
+
+        gendergroup = findViewById(R.id.gender_group);
+        gendergroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                checked = checkedId;
+            }
+        });
+        interestgroup = findViewById(R.id.interest_group);
+        interestgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                checked2 = checkedId;
+            }
+        });
     }
 
     private void checkFields() {
@@ -153,6 +168,7 @@ public class AdminInterest extends AppCompatActivity {
                     newUid = "AFF-00001";
                 }
                 memberModel.setUid(newUid);
+                memberModel.setPaymenttype("admin");
 
                 dbref.child(newUid).setValue(memberModel).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

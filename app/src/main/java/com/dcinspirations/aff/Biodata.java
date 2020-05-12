@@ -279,6 +279,7 @@ public class Biodata extends AppCompatActivity {
 
         memberModel = new MemberModel(etext, stext + " " + otext, oldmember.getCategory(), oldmember.getPass(), addrtext, ntext, gendtext, interesttext);
         memberModel.setUid(oldmember.getUid());
+        memberModel.setPaymenttype(oldmember.getPaymenttype());
         valaction.setText("Updating");
         lgif.setVisibility(View.VISIBLE);
         uploadData();

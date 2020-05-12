@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dcinspirations.aff">
 
     <dist:module dist:instant="true" />
@@ -11,17 +12,19 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
+        android:name=".BaseApp"
         android:allowBackup="true"
-        android:icon="@mipmap/logo1"
+        android:icon="@mipmap/logo2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".AdminFulltime"></activity>
         <activity android:name=".AdminInterest" />
         <activity android:name=".Biodata" />
         <activity android:name=".PlayMusicActivity" />
-        <activity android:name=".LoginClass" />
+        <activity android:name=".LoginClass"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -38,7 +41,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="co.paystack.android.PublicKey"
-            android:value="pk_test_c6db87618b2678df16efb9e770bc3fe53d9723ba" />
+            android:value="pk_live_c3bda07e5b414c45713e816debf201d0d92ac1a5" />
     </application>
 
 </manifest>

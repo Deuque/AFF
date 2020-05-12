@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/poppins"
-            android:text="Pay NGN 1,200.00"
+            android:text="Pay NGN 1550.00"
             android:textColor="@color/aux2"
             android:textSize="15sp"
             android:textStyle="bold" />

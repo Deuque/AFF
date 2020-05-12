@@ -225,11 +225,6 @@ public class PlayMusicActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (prepared) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
         super.onBackPressed();
     }
 

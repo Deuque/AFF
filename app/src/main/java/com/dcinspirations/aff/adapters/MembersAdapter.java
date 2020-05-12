@@ -72,7 +72,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.viewHold
         private LinearLayout otherimgs;
         private int position;
         private MemberModel currentObject;
-        private TextView aid,email,name;
+        private TextView aid,email,name,ptype;
         private ImageView delete;
 
         public void setPosition(int position) {
@@ -91,6 +91,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.viewHold
             aid = itemView.findViewById(R.id.affid);
             email = itemView.findViewById(R.id.email);
             name = itemView.findViewById(R.id.name);
+            ptype = itemView.findViewById(R.id.ptype);
 //            delete = itemView.findViewById(R.id.delete);
 
 
@@ -116,6 +117,9 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.viewHold
             this.aid.setText(current.getUid());
             this.email.setText(current.getEmail());
             this.name.setText(current.getName());
+
+            this.ptype.setText(current.getPaymenttype());
+            this.ptype.setTextColor(current.getPaymenttype().equalsIgnoreCase("admin")?context.getColor(android.R.color.holo_blue_dark):context.getColor(android.R.color.holo_green_dark));
 
             this.position = position;
             this.currentObject = current;

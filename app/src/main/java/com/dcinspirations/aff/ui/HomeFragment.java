@@ -50,12 +50,12 @@ import java.util.Collections;
 public class HomeFragment extends Fragment {
 
     ArrayList<SliderModel> sliderlist;
-    private int[] imglist = {R.mipmap.car3, R.mipmap.car1, R.mipmap.car2, R.mipmap.car5, R.mipmap.car4};
-    private String[] textlist = {"Entertainment at its peak",
-            "Vibe to our streams round the clock.",
-            "Latest jams from around the globe",
-            "Up to date articles on amazing topics",
-            "Become a member, enjoy benefits"};
+//    private int[] imglist = {R.mipmap.car3, R.mipmap.car1, R.mipmap.car2, R.mipmap.car5, R.mipmap.car4};
+//    private String[] textlist = {"Entertainment at its peak",
+//            "Vibe to our streams round the clock.",
+//            "Latest jams from around the globe",
+//            "Up to date articles on amazing topics",
+//            "Become a member, enjoy benefits"};
     ImageView od;
     NestedScrollView nestedScrollView;
     ExcosAdapter2 excosAdapter;
@@ -91,8 +91,6 @@ public class HomeFragment extends Fragment {
         sliderView = root.findViewById(R.id.imageSlider);
         adapter = new SliderAdapter(getContext(), sliderlist, 0, HomeFragment.this);
         sliderView.setSliderAdapter(adapter);
-        sliderView.startAutoCycle();
-        getAds();
 
 //        sliderView.setIndicatorAnimation(IndicatorAnimations.FILL); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
@@ -100,27 +98,24 @@ public class HomeFragment extends Fragment {
         sliderView.setCurrentPageListener(new SliderView.OnSliderPageListener() {
             @Override
             public void onSliderPageChanged(int position) {
-//                if (sliderlist.get(position).getCategory().equalsIgnoreCase("video")) {
-//
+                sliderView.startAutoCycle();
+            }
+        });
+        getAds();
+
+
+//        nestedScrollView = nestedScrollView = root.findViewById(R.id.mscroll);
+//        nestedScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if (scrollY >= 500) {
+//                    sliderView.stopAutoCycle();
 //                } else {
+//                    sliderView.startAutoCycle();
 //
 //                }
-            }
-        });
-
-
-        nestedScrollView = nestedScrollView = root.findViewById(R.id.mscroll);
-        nestedScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (scrollY >= 500) {
-                    sliderView.stopAutoCycle();
-                } else {
-                    sliderView.startAutoCycle();
-
-                }
-            }
-        });
+//            }
+//        });
 
 
         od = root.findViewById(R.id.od);
@@ -232,6 +227,9 @@ public class HomeFragment extends Fragment {
                     sliderlist.add(sm);
                 }
                 adapter.notifyDataSetChanged();
+                sliderView.dataSetChanged();
+                sliderView.startAutoCycle();
+
 
             }
 

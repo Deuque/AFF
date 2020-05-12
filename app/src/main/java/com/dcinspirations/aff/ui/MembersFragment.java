@@ -47,7 +47,7 @@ public class MembersFragment extends Fragment {
     Context ctx;
     ArrayList<MemberModel> memberslist;
     MembersAdapter membersAdapter;
-    TextView empty;
+    TextView empty,admin,self;
     LinearLayout load;
     String selecttab;
     ImageView cd,add;
@@ -80,9 +80,15 @@ public class MembersFragment extends Fragment {
         load = view.findViewById(R.id.load);
         memberslist= new ArrayList<>();
 
+        admin = view.findViewById(R.id.admin);
+        self = view.findViewById(R.id.self);
+
         return view;
     }
 
+    private void getCount(){
+
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -98,6 +104,7 @@ public class MembersFragment extends Fragment {
     }
 
     private void populatePosts() {
+
         memberslist.clear();
         load.setVisibility(View.VISIBLE);
         final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("AFFMembers");
@@ -105,13 +112,24 @@ public class MembersFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 memberslist.clear();
+                int a = 0;
+                int s = 0;
                 for (final DataSnapshot snaps : dataSnapshot.getChildren()) {
                     MemberModel mm = snaps.getValue(MemberModel.class);
                     mm.setUid(snaps.getKey());
                     if(mm.getCategory().equalsIgnoreCase(selecttab)) {
                         memberslist.add(0, mm);
                     }
+                    if(mm.getPaymenttype().equalsIgnoreCase("self")){
+                        s = s+1;
+                    }else{
+                        a = a+1;
+                    }
                 }
+                self.setText("self: "+Integer.toString(s));
+                admin.setText("admin: "+Integer.toString(a));
+
+
                 membersAdapter.notifyDataSetChanged();
                 if(memberslist.isEmpty()){
                     ldgif.setVisibility(View.GONE);

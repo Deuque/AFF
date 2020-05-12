@@ -75,22 +75,22 @@ public class MediaFragment extends Fragment {
     Uri fileuri;
     String details;
     String type;
-    FloatingActionButton fab,fab2;
-    ImageView cd,cd2;
-    RelativeLayout mediaupload,mm,slider;
+    FloatingActionButton fab, fab2;
+    ImageView cd, cd2;
+    RelativeLayout mediaupload, mm, slider;
     LinearLayout upload;
     EditText aname, sname;
-    TextView file,empty;
+    TextView file, empty;
     PorterShapeImageView file2;
     Button cancel;
-    GifImageView ldgif,ldgif2;
+    GifImageView ldgif, ldgif2;
     MediaAdapter mediaAdapter;
     ArrayList<MediaModel> medialist;
     LinearLayout load;
-    String selecttab="audio";
+    String selecttab = "audio";
     SliderView sliderView;
     SliderAdapter adapter;
-    String[] Datalist = {"Normal","Trending"};
+    String[] Datalist = {"Normal", "Trending"};
     Spinner cat;
     ArrayAdapter arradapter;
     View modalview;
@@ -114,7 +114,7 @@ public class MediaFragment extends Fragment {
         slider = view.findViewById(R.id.slider);
         sliderView = view.findViewById(R.id.imageSlider);
         fab = view.findViewById(R.id.fab);
-        if(new Sp(view.getContext()).getLoginType()!=3){
+        if (new Sp(view.getContext()).getLoginType() != 3) {
             fab.setVisibility(View.GONE);
         }
 //        fab2 = view.findViewById(R.id.fab2);
@@ -150,7 +150,7 @@ public class MediaFragment extends Fragment {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ldgif.getVisibility()!=View.VISIBLE) {
+                if (ldgif.getVisibility() != View.VISIBLE) {
                     uploadFile();
                 }
             }
@@ -174,7 +174,7 @@ public class MediaFragment extends Fragment {
         empty = view.findViewById(R.id.empty);
 
         cat = view.findViewById(R.id.cat);
-        arradapter = new ArrayAdapter<>(view.getContext(),R.layout.spinner_layout,Datalist);
+        arradapter = new ArrayAdapter<>(view.getContext(), R.layout.spinner_layout, Datalist);
         arradapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cat.setAdapter(arradapter);
         ctx = view.getContext();
@@ -186,7 +186,7 @@ public class MediaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView rv = view.findViewById(R.id.rv);
         GridLayoutManager glm = new GridLayoutManager(getContext(), 3);
-        mediaAdapter = new MediaAdapter(getContext(), medialist,MediaFragment.this);
+        mediaAdapter = new MediaAdapter(getContext(), medialist, MediaFragment.this);
         rv.setAdapter(mediaAdapter);
         rv.setLayoutManager(glm);
         setupTablayout(view);
@@ -194,11 +194,11 @@ public class MediaFragment extends Fragment {
 
     }
 
-    public void loadImageSlide(int index){
+    public void loadImageSlide(int index) {
         mm.setVisibility(View.GONE);
         slider.setVisibility(View.VISIBLE);
 
-        adapter = new SliderAdapter(getContext(), medialist,1,null);
+        adapter = new SliderAdapter(getContext(), medialist, 1, null);
         sliderView.setSliderAdapter(adapter);
         adapter.notifyDataSetChanged();
 //        sliderView.setIndicatorAnimation(IndicatorAnimations.FILL); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
@@ -206,7 +206,8 @@ public class MediaFragment extends Fragment {
         sliderView.setCurrentPagePosition(index);
 
     }
-    public void removeImageSlide(){
+
+    public void removeImageSlide() {
         mm.setVisibility(View.VISIBLE);
         slider.setVisibility(View.GONE);
     }
@@ -222,15 +223,15 @@ public class MediaFragment extends Fragment {
                 for (final DataSnapshot snaps : dataSnapshot.getChildren()) {
                     MediaModel mm = snaps.getValue(MediaModel.class);
                     mm.setKey(snaps.getKey());
-                    if(mm.getType().equalsIgnoreCase(selecttab)) {
+                    if (mm.getType().equalsIgnoreCase(selecttab)) {
                         medialist.add(0, mm);
                     }
                 }
                 mediaAdapter.notifyDataSetChanged();
-                if(medialist.isEmpty()){
+                if (medialist.isEmpty()) {
                     ldgif2.setVisibility(View.GONE);
                     empty.setText("No news here");
-                }else {
+                } else {
                     load.setVisibility(View.GONE);
                 }
 
@@ -246,7 +247,6 @@ public class MediaFragment extends Fragment {
     }
 
 
-
     public void setupTablayout(View v) {
         tabs = v.findViewById(R.id.tabs);
         TabLayout.Tab tab1 = tabs.newTab();
@@ -258,10 +258,10 @@ public class MediaFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
-                    selecttab= "audio";
+                    selecttab = "audio";
 //                    fab2.setVisibility(View.GONE);
                 } else {
-                    selecttab= "image";
+                    selecttab = "image";
 //                    fab2.setVisibility(View.VISIBLE);
                 }
                 populatePosts();
@@ -275,10 +275,10 @@ public class MediaFragment extends Fragment {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 if (tab == tabs.getTabAt(0)) {
-                    selecttab= "audio";
+                    selecttab = "audio";
 //                    fab2.setVisibility(View.GONE);
                 } else {
-                    selecttab= "image";
+                    selecttab = "image";
 //                    fab2.setVisibility(View.VISIBLE);
                 }
                 populatePosts();
@@ -322,33 +322,38 @@ public class MediaFragment extends Fragment {
         if (requestCode == req2 && resultCode == getActivity().RESULT_OK && data != null) {
             fileuri = data.getData();
 
-            Toast.makeText(ctx, fileuri.getPath(), Toast.LENGTH_LONG).show();
-            if (fileuri.toString().contains("image")||fileuri.getPath().contains("jpg")||fileuri.getPath().contains("png")) {
-                type = "image";
-                file2.setVisibility(View.VISIBLE);
-                file.setVisibility(View.GONE);
-                aname.setVisibility(View.GONE);
-                sname.setVisibility(View.GONE);
+                if (fileuri.toString().contains("audio") || fileuri.getPath().contains("mp3") || fileuri.getPath().contains("aac")) {
+                   try {
+                       details = getFileDetails(fileuri.getPath());
+                   }catch (Exception e){
+                       details = fileuri.getPath();
+                   }
+                    type = "audio";
+                    file2.setVisibility(View.GONE);
+                    file.setVisibility(View.VISIBLE);
+                    aname.setVisibility(View.VISIBLE);
+                    sname.setVisibility(View.VISIBLE);
+                    file.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.music2, 0, 0, 0);
+                } else {
+                    type = "image";
+                    file2.setVisibility(View.VISIBLE);
+                    file.setVisibility(View.GONE);
+                    aname.setVisibility(View.GONE);
+                    sname.setVisibility(View.GONE);
 //                Picasso.get()
 //                        .load(fileuri)
 //                        .resize(80,70)
 //                        .centerCrop()
 //                        .into(file2);
-                Glide.with(ctx)
-                        .load(fileuri)
-                        .override(100,100)
+                    Glide.with(ctx)
+                            .load(fileuri)
+                            .override(100, 100)
 //                        .thumbnail(.05f)
-                        .placeholder(R.drawable.image)
-                        .into(this.file2);
-            } else if (fileuri.toString().contains("audio")||fileuri.getPath().contains("mp3")) {
-                details = getFileDetails(fileuri.getPath());
-                type = "audio";
-                file2.setVisibility(View.GONE);
-                file.setVisibility(View.VISIBLE);
-                aname.setVisibility(View.VISIBLE);
-                sname.setVisibility(View.VISIBLE);
-                file.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.music2, 0, 0, 0);
-            }
+                            .placeholder(R.drawable.image)
+                            .into(this.file2);
+
+                }
+
             file.setText(details);
             mediaupload.setVisibility(View.VISIBLE);
 
@@ -361,28 +366,30 @@ public class MediaFragment extends Fragment {
 
     public static String getFileDetails(String string) {
 
-        String details[] = new String[2];
-        String array[] = string.split("/");
-        String name = array[array.length - 1].trim();
-        if (name.contains(":")) {
-            details[0] = name.substring(name.indexOf(":") + 1, name.indexOf("."));
-        } else {
-            details[0] = name.substring(0, name.lastIndexOf("."));
-        }
+
+            String details[] = new String[2];
+            String array[] = string.split("/");
+            String name = array[array.length - 1].trim();
+            if (name.contains(":")) {
+                details[0] = name.substring(name.indexOf(":") + 1, name.indexOf("."));
+            } else {
+                details[0] = name.substring(0, name.lastIndexOf("."));
+            }
 
 
-        String ext = name.substring(name.indexOf(".") + 1, name.length());
-        details[1] = ext;
-        return details[0] + "." + details[1];
+            String ext = name.substring(name.indexOf(".") + 1, name.length());
+            details[1] = ext;
+            return details[0] + "." + details[1];
+
     }
 
     private void uploadFile() {
         final String atext;
         final String stext;
         final String scat;
-        if(type.equalsIgnoreCase("audio")) {
-            atext= aname.getText().toString().trim();
-             stext= sname.getText().toString().trim();
+        if (type.equalsIgnoreCase("audio")) {
+            atext = aname.getText().toString().trim();
+            stext = sname.getText().toString().trim();
             if (atext.isEmpty()) {
                 aname.setError("Enter Artiste");
                 aname.requestFocus();
@@ -393,7 +400,7 @@ public class MediaFragment extends Fragment {
                 sname.requestFocus();
                 return;
             }
-        }else{
+        } else {
             atext = "";
             stext = "";
         }
@@ -401,7 +408,7 @@ public class MediaFragment extends Fragment {
         ldgif.setVisibility(View.VISIBLE);
 
         final String filename = System.currentTimeMillis() + "";
-        final MediaModel mediaModel = new MediaModel("", atext, stext, type,scat);
+        final MediaModel mediaModel = new MediaModel("", atext, stext, type, scat);
         final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("AffMedia")
                 .child(filename);
         storageReference.putFile(fileuri)

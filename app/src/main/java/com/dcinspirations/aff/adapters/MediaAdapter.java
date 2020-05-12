@@ -137,8 +137,8 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
                 Glide.with(context)
                         .load(current.getImgUrl())
                         .into(this.image);
-                this.aname.setText("");
-                this.sname.setText("");
+                this.aname.setVisibility(View.GONE);
+                this.sname.setVisibility(View.GONE);
                 this.downloads.setVisibility(View.GONE);
                 this.label.setVisibility(View.GONE);
             }else {

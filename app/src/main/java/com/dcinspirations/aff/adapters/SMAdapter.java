@@ -1,5 +1,7 @@
 package com.dcinspirations.aff.adapters;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,10 +20,13 @@ import com.dcinspirations.aff.R;
 import com.dcinspirations.aff.Sp;
 import com.dcinspirations.aff.models.NewsModel;
 import com.dcinspirations.aff.models.SM_model;
+import com.dcinspirations.aff.ui.AboutFragment;
 import com.dcinspirations.aff.ui.NewsFragment;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 /**
  * Created by pc on 2/18/2018.
@@ -34,7 +40,7 @@ public class SMAdapter extends RecyclerView.Adapter<SMAdapter.viewHolder> {
     private String layout;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor spe;
-    private NewsFragment f;
+    private AboutFragment f;
 
     public SMAdapter(Context context, List<SM_model> objectlist) {
         inflater = LayoutInflater.from(context);
@@ -118,8 +124,12 @@ public class SMAdapter extends RecyclerView.Adapter<SMAdapter.viewHolder> {
                 @Override
                 public void onClick(View v) {
 
-                    context.startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse(current.getLink())));
+                    ClipboardManager clipboard = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("text", current.getLink());
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast.makeText(context,"Copied to clipboard",Toast.LENGTH_LONG).show();
+
                 }
             });
 

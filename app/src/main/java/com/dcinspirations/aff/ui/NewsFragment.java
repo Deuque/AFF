@@ -167,6 +167,8 @@ public class NewsFragment extends Fragment {
                     mm.setNkey(snaps.getKey());
                     if(mm.getCategory().equalsIgnoreCase(selecttab)) {
                         newslist.add(0, mm);
+
+                        dbref.child(mm.getNkey()).child("Viewers").child(new Sp(ctx).getUid()).setValue(new Sp(ctx).getUid());
                     }
                 }
                 newsAdapter.notifyDataSetChanged();

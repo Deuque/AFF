@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Powered by kingest"
+        android:textSize="14sp"
+        android:textColor="@color/aux5"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/poppins"
+        android:textStyle="italic"/>
+<ImageView
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:src="@mipmap/kingest"/>
+</LinearLayout>
