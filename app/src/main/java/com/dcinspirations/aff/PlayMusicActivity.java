@@ -296,6 +296,7 @@ public class PlayMusicActivity extends AppCompatActivity {
 
     @Override
     public void onPause() {
+        try{
 
 
         if (!askingPerm) {
@@ -310,6 +311,11 @@ public class PlayMusicActivity extends AppCompatActivity {
         }
 
         super.onPause();
+        }
+        catch (Exception e){
+
+
+        }
     }
 
     @Override
@@ -322,6 +328,9 @@ public class PlayMusicActivity extends AppCompatActivity {
 
     @Override
     public void onStop() {
+        try{
+
+
         h.removeCallbacks(r);
         isPlaying = false;
         if (mediaPlayer != null) {
@@ -330,5 +339,9 @@ public class PlayMusicActivity extends AppCompatActivity {
         musicTask.cancel(true);
         mcontrol.setImageResource(R.drawable.play);
         super.onStop();
+        }catch (Exception e){
+
+
+        }
     }
 }

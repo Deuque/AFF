@@ -143,6 +143,8 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.viewHolder> 
                 this.label.setVisibility(View.GONE);
             }else {
                 this.image.setImageResource(R.mipmap.mbg);
+                this.aname.setVisibility(View.VISIBLE);
+                this.sname.setVisibility(View.VISIBLE);
                 this.aname.setText(current.getArtist());
                 this.sname.setText(current.getSong());
                 this.downloads.setVisibility(View.VISIBLE);

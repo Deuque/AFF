@@ -19,16 +19,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".AdminFulltime"></activity>
-        <activity android:name=".AdminInterest" />
-        <activity android:name=".Biodata" />
-        <activity android:name=".PlayMusicActivity" />
+        <activity android:name=".AdminFulltime"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".AdminInterest"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Biodata"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PlayMusicActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".LoginClass"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -109,7 +109,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.viewHold
                     @Override
                     public void onClick(View v) {
                         objectlist.remove(currentObject);
-                        FirebaseDatabase.getInstance().getReference().child("AffOthers").child(currentObject.getId()).removeValue();
+                        FirebaseDatabase.getInstance().getReference().child("AffOthers").child("addresslocations").child(currentObject.getId()).removeValue();
                         FirebaseStorage.getInstance().getReference().child("AffOthers").child(currentObject.getId()).delete();
                         refreshEvents();
                     }
