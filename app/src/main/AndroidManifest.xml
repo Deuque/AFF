@@ -46,7 +46,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="co.paystack.android.PublicKey"
-            android:value="pk_live_c3bda07e5b414c45713e816debf201d0d92ac1a5" />
+            android:value="Your live public key here" />
     </application>
 
 </manifest>
