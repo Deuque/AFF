@@ -1,5 +1,6 @@
 # AFF
-A typical entertainment app built for AFF Entertainment World
+A typical entertainment app built for AFF Entertainment World <br/>
+App on playstore: 
 https://play.google.com/store/apps/details?id=com.dcinspirations.aff
 <br/>
 <br/>
